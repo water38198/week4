@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四周產品頁面</title>
+    <!-- BS5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- AXIOS  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container mt-4" id="productApp">
+        <div class="row justify-content-center">
+            <!-- 產品列表 -->
+            <div class="col">
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary" @click="openModal('new')">建立新的產品</button>
+                </div>
+                <h2 class="h2 text-center">產品列表</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">分類</th>
+                            <th scope="col">產品名稱</th>
+                            <th scope="col">原價</th>
+                            <th scope="col">售價</th>
+                            <th scope="col">是否啟用</th>
+                            <th scope="col">編輯</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-if="products">
+                            <tr v-for="product in products" :key="product.id">
+                                <td>{{product.category}}</td>
+                                <td>{{product.title}}</td>
+                                <td>{{product.origin_price}}</td>
+                                <td>{{product.price}}</td>
+                                <td><span class="text-success" v-if="product.is_enabled">啟用</span>
+                                    <span class="text-danger" v-else>未啟用</span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-sm me-2"
+                                        @click="openModal('edit',product)">編輯</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm"
+                                        @click="openModal('delete',product)">刪除</button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">目前有{{products.length}}項產品</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <pagination :pages="page" :get-products="getProducts"></pagination>
+
+            </div>
+        </div>
+        <!-- productModal -->
+        <div class="modal fade" id="productModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="productModalLabel" aria-hidden="true">
+            <product-modal-component :temp-product="tempProduct" :is-new="isNew"
+                :update-product="updateProduct"></product-modal-component>
+        </div>
+
+        <!-- deleteModal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+
+            <del-modal-component :temp-product="tempProduct" :delete-product="deleteProduct"></del-modal-component>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/products.js" type="module"></script>
+
+</body>
+
+</html>
