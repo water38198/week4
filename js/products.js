@@ -39,7 +39,6 @@ const app = {
                 .then((res) => {
                     this.products = res.data.products;
                     this.page = res.data.pagination;
-                    console.log(res);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -95,7 +94,6 @@ const app = {
             axios
                 .post(`${url}v2/api/${api_path}/admin/upload`, formData)
                 .then((res) => {
-                    console.log(res);
                     console.log(res.data.imageUrl);
                     if (res.data.imageUrl) {
                         this.tempProduct.imagesUrl.push(res.data.imageUrl);

@@ -73,6 +73,32 @@ export default {
                                         <input type="number" id="productPrice" class="form-control" placeholder="請輸入售價"
                                             min="0" v-model.number="tempProduct.price">
                                     </div>
+                                    <div class="col-4">
+                                        <label for="productTag" class="form-label">標籤</label>
+                                            <select class="form-select" aria-label="tag" v-model="tempProduct.tag" id="productTag">
+                                            <option selected value="策略">策略</option>
+                                            <option value="家庭">家庭</option>
+                                            <option value="派對">派對</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="productLanguage" class="form-label">語言</label>
+                                            <select class="form-select" aria-label="tag" v-model="tempProduct.language" id="productLanguage">
+                                            <option selected value="繁中">繁中</option>
+                                            <option value="簡中">簡中</option>
+                                            <option value="英文">英文</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="productCondition" class="form-label">盒況</label>
+                                            <select class="form-select" aria-label="tag" v-model="tempProduct.condition" id="productCondition">
+                                            <option selected value="盒損">盒損</option>
+                                            <option value="件損">件損</option>
+                                            <option value="完好">完好</option>
+                                            <option value="其他">其他</option>
+
+                                            </select>
+                                    </div>
                                     <hr>
                                     <div class="col-12">
                                         <label for="productDescription" class="form-label">產品描述</label>
