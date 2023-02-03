@@ -66,13 +66,12 @@
         <!-- productModal -->
         <div class="modal fade" id="productModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="productModalLabel" aria-hidden="true">
-            <product-modal-component :temp-product="tempProduct" :is-new="isNew"
-                :update-product="updateProduct"></product-modal-component>
+            <product-modal-component :temp-product="tempProduct" :is-new="isNew" :update-product="updateProduct"
+                :upload-image="uploadImage"></product-modal-component>
         </div>
 
         <!-- deleteModal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-
             <del-modal-component :temp-product="tempProduct" :delete-product="deleteProduct"></del-modal-component>
         </div>
     </div>

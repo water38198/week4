@@ -35,7 +35,7 @@ const app = {
         //取得產品資料
         getProducts(page = 1) {
             axios
-                .get(`${url}v2/api/${api_path}/admin/products/?page=${page}`)
+                .get(`${url}v2/api/${api_path}/admin/products?page=${page}`)
                 .then((res) => {
                     this.products = res.data.products;
                     this.page = res.data.pagination;
@@ -86,6 +86,26 @@ const app = {
                 })
                 .catch((err) => {
                     console.log(err);
+                });
+        },
+        uploadImage() {
+            const file = document.querySelector("#formFile");
+            const formData = new FormData();
+            formData.append("file-to-upload", file.files[0]);
+            axios
+                .post(`${url}v2/api/${api_path}/admin/upload`, formData)
+                .then((res) => {
+                    console.log(res);
+                    console.log(res.data.imageUrl);
+                    if (res.data.imageUrl) {
+                        this.tempProduct.imagesUrl.push(res.data.imageUrl);
+                        file.value = "";
+                    } else {
+                        alert(res.data.message);
+                    }
+                })
+                .catch((err) => {
+                    alert(err);
                 });
         },
         deleteProduct() {

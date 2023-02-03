@@ -31,12 +31,16 @@ export default {
                                             </div>
                                             <input type="text" placeholder="請輸入圖片連結" class="form-control mb-1"
                                                 v-model="tempProduct.imagesUrl[key]" :id="image">
-                                            <img :src="image" alt="" class="img-fluid">
+                                            <img :src="image" alt="" class="img-fluid mb-4">
                                         </template>
-                                        <div>
+                                        <div v-if="tempProduct.imagesUrl[tempProduct.imagesUrl.length-1]||!tempProduct.imagesUrl.length">
                                             <button class="btn btn-outline-primary w-100 mb-3" type="button"
-                                                v-if="tempProduct.imagesUrl[tempProduct.imagesUrl.length-1]||!tempProduct.imagesUrl.length"
-                                                @click="tempProduct.imagesUrl.push('')">新增圖片</button>
+                                                
+                                                @click="tempProduct.imagesUrl.push('')">新增圖片網址</button>
+                                            <p class="text-center">或</p>
+                                            <div class="mb-3" >
+                                                <input class="form-control" type="file" id="formFile" @change="uploadImage">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -96,5 +100,5 @@ export default {
                     </div>
                 </div>
             </div>`,
-    props: ["tempProduct", "isNew", "updateProduct"],
+    props: ["tempProduct", "isNew", "updateProduct", "uploadImage"],
 };
