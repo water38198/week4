@@ -17,7 +17,6 @@ const app = {
                     password: this.user.password,
                 })
                 .then((res) => {
-                    console.log(res);
                     const { expired, token } = res.data;
                     document.cookie = `myToken=${token}; expires=${new Date(
                         expired
@@ -26,8 +25,7 @@ const app = {
                     window.location = "products.html";
                 })
                 .catch((err) => {
-                    console.log(err);
-                    alert("登入失敗");
+                    alert(err.response.data.message);
                 });
         },
     },

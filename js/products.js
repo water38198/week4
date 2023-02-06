@@ -2,9 +2,9 @@ const url = "https://vue3-course-api.hexschool.io/";
 const api_path = "payroom";
 let productModal = {};
 let delModal = {};
-import pagination from "./pagination.js";
-import productModalComponent from "./productModal.js";
-import delModalComponent from "./delModal.js";
+import pagination from "./components/pagination.js";
+import productModalComponent from "./components/productModal.js";
+import delModalComponent from "./components/delModal.js";
 
 const app = {
     data() {
@@ -27,7 +27,6 @@ const app = {
                     this.getProducts();
                 })
                 .catch((err) => {
-                    console.log(err);
                     alert("請先登入");
                     location.href = "index.html";
                 });
@@ -94,7 +93,6 @@ const app = {
             axios
                 .post(`${url}v2/api/${api_path}/admin/upload`, formData)
                 .then((res) => {
-                    console.log(res.data.imageUrl);
                     if (res.data.imageUrl) {
                         this.tempProduct.imagesUrl.push(res.data.imageUrl);
                         file.value = "";
